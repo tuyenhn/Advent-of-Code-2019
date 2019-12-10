@@ -10,6 +10,23 @@ for i in range(0, len(img), 6):
     layers.append(temp)
 
 
+# PART ONE - FINISHED
+cnter = []
+for layer in layers:
+    cnt = 0
+    for row in layer:
+        cnt += row.count(0)
+    cnter.append(cnt)
+
+one_cnter = 0
+two_cnter = 0
+for row in layers[cnter.index(min(cnter))]:
+    one_cnter += row.count(1)
+    two_cnter += row.count(2)
+
+print(one_cnter * two_cnter)
+
+
 # PART TWO - FINISHED
 final_pic = []
 for row in range(6):
@@ -19,10 +36,10 @@ for row in range(6):
         for layer in layers:
             color = layer[row][col]
             if color == 0:
-                new_row.append(f'\u25a0')
+                new_row.append(f'\u25a1')
                 break
             elif color == 1:
-                new_row.append(f'\u25a1')
+                new_row.append(f'\u25a0')
                 break
             elif color == 2:
                 continue
@@ -33,19 +50,3 @@ for row in range(6):
 
 for r in final_pic:
     print(r)
-
-# PART ONE - FINISHED
-# cnter = []
-# for layer in layers:
-#     cnt = 0
-#     for row in layer:
-#         cnt += row.count(0)
-#     cnter.append(cnt)
-#
-# one_cnter = 0
-# two_cnter = 0
-# for row in layers[cnter.index(min(cnter))]:
-#     one_cnter += row.count(1)
-#     two_cnter += row.count(2)
-
-# print(one_cnter * two_cnter)
