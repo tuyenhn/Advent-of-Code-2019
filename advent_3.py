@@ -22,18 +22,18 @@ def move(route: list):
 
         if x > old_x or y > old_y:
             if x != old_x:
-                for i in range(old_x, x):
+                for i in range(old_x+1, x+1):
                     path.append((i, y))
             elif y != old_y:
-                for i in range(old_y, y):
+                for i in range(old_y+1, y+1):
                     path.append((x, i))
 
         elif x < old_x or y < old_y:
             if x != old_x:
-                for i in range(x, old_x):
+                for i in range(old_x-1, x-1, -1):
                     path.append((i, y))
             elif y != old_y:
-                for i in range(y, old_y):
+                for i in range(old_y-1, y-1, -1):
                     path.append((x, i))
 
     return path
@@ -41,15 +41,14 @@ def move(route: list):
 
 trace1 = move(route1)
 trace2 = move(route2)
-
 # print(trace1)
 # print(trace2)
 
 intersections = set(trace1) & set(trace2)
+# print(intersections)
 
 
-print(intersections)
-
+# PART 1 - SOLVED
 manhattan_dist = []
 for inter in intersections:
     x = inter[0]
@@ -57,3 +56,11 @@ for inter in intersections:
     manhattan_dist.append(abs(x)+abs(y))
 
 print(min(manhattan_dist))
+
+
+# PART 2 - SOLVED
+steps = []
+for inter in intersections:
+    steps.append(trace1.index(inter) + trace2.index(inter) + 2)
+
+print(min(steps))
